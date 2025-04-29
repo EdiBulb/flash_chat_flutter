@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flash_chat_flutter/constants.dart';
 
 class ChatScreen extends StatefulWidget {
+  static const String id = 'chat_screen'; // routes typo 예방
+
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -34,7 +36,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
-                      onChanged: (value) {
+                      onChanged: (value) { // 입력창에 입력된 글자를 실시간으로 콜백하는 함수
                         //Do something with the user input.
                       },
                       decoration: kMessageTextFieldDecoration,

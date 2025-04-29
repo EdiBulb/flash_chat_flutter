@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
+  static const String id = 'login_screen'; // routes typo 예방
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
