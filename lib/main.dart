@@ -10,10 +10,10 @@ class FlashChat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        // copyWith : 기존 테마를 커스터마이징함.
-        textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.black54)),
-      ),
+      // theme: ThemeData.dark().copyWith(
+      //   // copyWith : 기존 테마를 커스터마이징함.
+      //   textTheme: TextTheme(bodyMedium: TextStyle(color: Colors.black54)),
+      // ),
       // home: WelcomeScreen(), : due to initalRoutes, no need 'home'.
 
       // routes
