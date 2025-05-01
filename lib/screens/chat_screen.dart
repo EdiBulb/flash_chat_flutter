@@ -2,6 +2,7 @@ import 'package:flash_chat_flutter/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat_flutter/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String id = 'chat_screen'; // routes typo 예방
@@ -11,9 +12,10 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
-
+  final _firestore = FirebaseFirestore.instance; // 텍스트 DB에 저장하기 위함
   final _auth= FirebaseAuth.instance;
   late User loggedInUser;
+  String? messageText;
 
   @override
   void initState() {
@@ -64,6 +66,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     child: TextField(
                       onChanged: (value) { // 입력창에 입력된 글자를 실시간으로 콜백하는 함수
                         //Do something with the user input.
+                        messageText = value;
                       },
                       decoration: kMessageTextFieldDecoration,
                     ),
@@ -71,6 +74,10 @@ class _ChatScreenState extends State<ChatScreen> {
                   TextButton(
                     onPressed: () {
                       //Implement send functionality.
+                      _firestore.collection('messages').add({ // map 형태임
+                        'text': messageText,
+                        'sender': loggedInUser.email,
+                      });
                     },
                     child: Text(
                       'Send',
