@@ -104,6 +104,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         // map 형태임
                         'text': messageText,
                         'sender': loggedInUser.email,
+                        'timestamp': FieldValue.serverTimestamp(),
                       });
                     },
                     child: Text('Send', style: kSendButtonTextStyle),
@@ -123,7 +124,7 @@ class MessagesStream extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
       // StreamBuilder 부분 어려움
-      stream: _firestore.collection('messages').snapshots(),
+      stream: _firestore.collection('messages').orderBy('timestamp').snapshots(), // 시간 순서로 정렬
       builder: (context, snapshot) {
         // 스냅샷에 데이터가 없을 경우
         if (!snapshot.hasData) {
